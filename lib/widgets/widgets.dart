@@ -22,7 +22,7 @@ Widget appBarMain(BuildContext context,String title){
   return AppBar(
     elevation: 0,
     centerTitle: true,
-    backgroundColor: Colors.green,
+    backgroundColor: Color(0xff5077be),
     title: Text(
       title,
       style: TextStyle(

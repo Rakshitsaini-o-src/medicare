@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:medicare/Screens/profile.dart';
 import 'package:medicare/Screens/signin.dart';
+import 'package:medicare/chatbot/chatbot.dart';
+import 'package:medicare/helper/sharedpreference.dart';
 import 'package:medicare/services/auth.dart';
-import 'package:medicare/widgets/widgets.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _DashBoardState extends State<DashBoard> {
         automaticallyImplyLeading: false,
         title: Text('Home Page'),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xff5077be),
         elevation: 0,
         actions: <Widget>[
           FlatButton.icon(
@@ -29,6 +30,7 @@ class _DashBoardState extends State<DashBoard> {
             ),
             onPressed: () async{
               await _auth.signOut();
+              HelperFunctions.saveUserLoggedInPreferences(false);
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
             },
           ),
@@ -40,6 +42,7 @@ class _DashBoardState extends State<DashBoard> {
             FittedBox(
               child: Row(
                 children: <Widget>[
+                  ///Profile Card
                   GestureDetector(
                     onTap: (){
                       Navigator.push(
@@ -49,7 +52,7 @@ class _DashBoardState extends State<DashBoard> {
                     },
                     child: Card(
                       margin: EdgeInsets.fromLTRB(40, 30, 0, 0),
-                      color: Colors.green,
+                      color: Color(0xff5077be),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
@@ -77,7 +80,46 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  ///ChatBot
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)=> ChatBotPage(),)
+                      );
+                    },
+                    child: Card(
+                      margin: EdgeInsets.fromLTRB(40, 30, 0, 0),
+                      color: Color(0xff5077be),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset(
+                              'assets/images/Chatbot.png',
+                              width: 100,
+                              height: 100,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              child: Text(
+                                'ChatBot',
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )

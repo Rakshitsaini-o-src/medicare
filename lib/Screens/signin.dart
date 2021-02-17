@@ -126,7 +126,7 @@ class _SignInState extends State<SignIn> {
                     GestureDetector(
                       onTap: widget.toggle,
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(vertical: 8),
                         child: Text(
                           "Register Now",
                           style: kTextfieldTextStyle().copyWith(

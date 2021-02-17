@@ -14,7 +14,7 @@ class _ChatBotPageState extends State<ChatBotPage> {
   List<Map> messages = List();
 
   void response(query) async {
-    AuthGoogle authGoogle =await AuthGoogle(fileJson: 'assest/service.json').build();
+    AuthGoogle authGoogle =await AuthGoogle(fileJson: "assets/service.json").build();
     Dialogflow dialogflow = Dialogflow(authGoogle: authGoogle,language: Language.english);
     AIResponse aiResponse = await dialogflow.detectIntent(query);
     setState(() {

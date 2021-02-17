@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medicare/Screens/profile.dart';
-import 'package:medicare/Screens/signin.dart';
 import 'package:medicare/chatbot/chatbot.dart';
+import 'package:medicare/helper/authenticate.dart';
 import 'package:medicare/helper/sharedpreference.dart';
 import 'package:medicare/services/auth.dart';
 
@@ -31,7 +31,7 @@ class _DashBoardState extends State<DashBoard> {
             onPressed: () async{
               await _auth.signOut();
               HelperFunctions.saveUserLoggedInPreferences(false);
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Authenticate()));
             },
           ),
         ],

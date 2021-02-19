@@ -12,7 +12,7 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  AuthMethods _auth =  new AuthMethods();
+  AuthMethods _auth = new AuthMethods();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +27,13 @@ class _DashBoardState extends State<DashBoard> {
             icon: Icon(Icons.person),
             label: Text(
               'LogOut',
-              style: TextStyle(color:Colors.black),
+              style: TextStyle(color: Colors.black),
             ),
-            onPressed: () async{
+            onPressed: () async {
               await _auth.signOut();
               HelperFunctions.saveUserLoggedInPreferences(false);
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Authenticate()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => Authenticate()));
             },
           ),
         ],
@@ -45,11 +46,12 @@ class _DashBoardState extends State<DashBoard> {
                 children: <Widget>[
                   ///Profile Card
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context)=> ProfilePage(),)
-                      );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfilePage(),
+                          ));
                     },
                     child: Card(
                       margin: EdgeInsets.fromLTRB(40, 30, 0, 0),
@@ -59,7 +61,7 @@ class _DashBoardState extends State<DashBoard> {
                         child: Column(
                           children: <Widget>[
                             Image.asset(
-                                'assets/images/Profile.png',
+                              'assets/images/Profile.png',
                               width: 100,
                               height: 100,
                             ),
@@ -82,13 +84,15 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ),
                   ),
+
                   ///ChatBot
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=> ChatBotPage(),)
-                      );
+                          MaterialPageRoute(
+                            builder: (context) => ChatBotPage(),
+                          ));
                     },
                     child: Card(
                       margin: EdgeInsets.fromLTRB(80, 30, 40, 0),
@@ -128,11 +132,12 @@ class _DashBoardState extends State<DashBoard> {
               child: Row(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=> MedicineReminder(),)
-                      );
+                          MaterialPageRoute(
+                            builder: (context) => MedicineReminder(),
+                          ));
                     },
                     child: Card(
                       margin: EdgeInsets.fromLTRB(40, 30, 0, 0),
@@ -141,11 +146,11 @@ class _DashBoardState extends State<DashBoard> {
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
                           children: <Widget>[
-                            // Image.asset(
-                            //   'assets/images/Chatbot.png',
-                            //   width: 100,
-                            //   height: 100,
-                            // ),
+                            Image.asset(
+                              'assets/images/medicine.png',
+                              width: 100,
+                              height: 100,
+                            ),
                             SizedBox(
                               height: 30,
                             ),
@@ -166,11 +171,12 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=> ChatBotPage(),)
-                      );
+                          MaterialPageRoute(
+                            builder: (context) => ChatBotPage(),
+                          ));
                     },
                     child: Card(
                       margin: EdgeInsets.fromLTRB(80, 30, 40, 0),

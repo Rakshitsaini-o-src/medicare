@@ -23,7 +23,7 @@ class MedicineDetails extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          "Mediminder Details",
+          "Reminder Details",
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -59,7 +59,7 @@ class MedicineDetails extends StatelessWidget {
                     },
                     child: Center(
                       child: Text(
-                        "Delete Mediminder",
+                        "Delete Reminder",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
@@ -99,7 +99,7 @@ class MedicineDetails extends StatelessWidget {
                     padding: EdgeInsets.all(18),
                     child: Center(
                       child: Text(
-                        "Delete this Mediminder?",
+                        "Delete this Reminder?",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),

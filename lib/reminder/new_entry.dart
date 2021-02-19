@@ -57,7 +57,7 @@ class _NewEntryState extends State<NewEntry> {
         ),
         centerTitle: true,
         title: Text(
-          "Add New Mediminder",
+          "Add New Reminder",
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -339,7 +339,7 @@ class _NewEntryState extends State<NewEntry> {
       'repeatDailyAtTime channel name',
       'repeatDailyAtTime description',
       importance: Importance.max,
-      //sound: 'sound',
+      sound: RawResourceAndroidNotificationSound('sound'),
       ledColor: Color(0xFF3EB16F),
       ledOffMs: 1000,
       ledOnMs: 1000,
@@ -356,9 +356,10 @@ class _NewEntryState extends State<NewEntry> {
       } else {
         hour = hour + (medicine.interval * i);
       }
+      // ignore: deprecated_member_use
       await flutterLocalNotificationsPlugin.showDailyAtTime(
           int.parse(medicine.notificationIDs[i]),
-          'Mediminder: ${medicine.medicineName}',
+          'Reminder: ${medicine.medicineName}',
           medicine.medicineType.toString() != MedicineType.None.toString()
               ? 'It is time to take your ${medicine.medicineType.toLowerCase()}, according to schedule'
               : 'It is time to take your medicine, according to schedule',
@@ -459,7 +460,7 @@ class _SelectTimeState extends State<SelectTime> {
   bool _clicked = false;
 
   Future<TimeOfDay> _selectTime(BuildContext context) async {
-    final NewEntryBloc _newEntryBloc = Provider.of<NewEntryBloc>(context);
+    final NewEntryBloc _newEntryBloc = Provider.of<NewEntryBloc>(context,listen: false);
     final TimeOfDay picked = await showTimePicker(
       context: context,
       initialTime: _time,

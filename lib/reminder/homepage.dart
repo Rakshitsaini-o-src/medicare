@@ -83,56 +83,58 @@ class TopContainer extends StatelessWidget {
         color: Color(0xFF3EB16F),
       ),
       width: double.infinity,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(
-              bottom: 10,
-            ),
-            child: Text(
-              "Mediminder",
-              style: TextStyle(
-                fontFamily: "Angel",
-                fontSize: 64,
-                color: Colors.white,
+      child: FittedBox(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(
+                bottom: 10,
               ),
-            ),
-          ),
-          Divider(
-            color: Color(0xFFB0F3CB),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 12.0),
-            child: Center(
               child: Text(
-                "Number of Mediminders",
+                "Reminder",
                 style: TextStyle(
-                  fontSize: 17,
+                  fontFamily: "Angel",
+                  fontSize: 64,
                   color: Colors.white,
                 ),
               ),
             ),
-          ),
-          StreamBuilder<List<Medicine>>(
-            stream: globalBloc.medicineList$,
-            builder: (context, snapshot) {
-              return Padding(
-                padding: EdgeInsets.only(top: 16.0, bottom: 5),
-                child: Center(
-                  child: Text(
-                    !snapshot.hasData ? '0' : snapshot.data.length.toString(),
-                    style: TextStyle(
-                      fontFamily: "Neu",
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+            Divider(
+              color: Color(0xFFB0F3CB),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 12.0),
+              child: Center(
+                child: Text(
+                  "Number of Reminders",
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.white,
                   ),
                 ),
-              );
-            },
-          ),
-        ],
+              ),
+            ),
+            StreamBuilder<List<Medicine>>(
+              stream: globalBloc.medicineList$,
+              builder: (context, snapshot) {
+                return Padding(
+                  padding: EdgeInsets.only(top: 16.0, bottom: 5),
+                  child: Center(
+                    child: Text(
+                      !snapshot.hasData ? '0' : snapshot.data.length.toString(),
+                      style: TextStyle(
+                        fontFamily: "Neu",
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -152,7 +154,7 @@ class BottomContainer extends StatelessWidget {
             color: Color(0xFFF6F8FC),
             child: Center(
               child: Text(
-                "Press + to add a Mediminder",
+                "Press + to add a Reminder",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 24,

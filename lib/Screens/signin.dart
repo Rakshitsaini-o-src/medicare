@@ -28,10 +28,11 @@ class _SignInState extends State<SignIn> {
       authMethods.signInWithEmail(
           emailTextController.text, passwordTextController.text)
       .then((value) {
+        String email = emailTextController.text;
         if(value != null){
           HelperFunctions.saveUserLoggedInPreferences(true);
           Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context)=> DashBoard()));
+            MaterialPageRoute(builder: (context)=> DashBoard(email: email,)));
         }
       });
     }

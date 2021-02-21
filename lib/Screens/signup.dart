@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:medicare/Screens/profile.dart';
 import 'package:medicare/helper/sharedpreference.dart';
 import 'package:medicare/services/auth.dart';
+import 'package:medicare/services/database.dart';
 import 'package:medicare/widgets/widgets.dart';
 
 import 'dashboard.dart';
@@ -15,22 +17,27 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final formKey = GlobalKey<FormState>();
   AuthMethods authMethods = new AuthMethods();
+  DatabaseMethods databaseMethods = new DatabaseMethods();
   TextEditingController emailTextController = new TextEditingController();
   TextEditingController passwordTextController = new TextEditingController();
   bool _isLoading = false;
 
   signMeUp(){
     if(formKey.currentState.validate()){
-      String email= emailTextController.text;
-      HelperFunctions.saveUserEmailPreferences(email);
+      Map<String,String> userMap = {
+        "email": emailTextController.text
+      };
+
+      HelperFunctions.saveUserEmailPreferences(emailTextController.text);
       setState(() {
         _isLoading =true;
       });
       authMethods.signUpWithEmail(emailTextController.text, passwordTextController.text)
         .then((value) {
+          databaseMethods.uploadUserEmailInfo(userMap,emailTextController.text);
          HelperFunctions.saveUserLoggedInPreferences(true);
          Navigator.pushReplacement(context,
-             MaterialPageRoute(builder: (context)=> DashBoard()));
+             MaterialPageRoute(builder: (context)=> ProfilePage(email: emailTextController.text)));
       });
     }
   }

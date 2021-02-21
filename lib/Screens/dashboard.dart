@@ -6,13 +6,25 @@ import 'package:medicare/helper/sharedpreference.dart';
 import 'package:medicare/reminder/reminder.dart';
 import 'package:medicare/services/auth.dart';
 
+// ignore: must_be_immutable
 class DashBoard extends StatefulWidget {
+  final String email;
+  DashBoard({this.email});
   @override
   _DashBoardState createState() => _DashBoardState();
 }
 
 class _DashBoardState extends State<DashBoard> {
   AuthMethods _auth = new AuthMethods();
+  String email;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    email = widget.email;
+    print(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +62,7 @@ class _DashBoardState extends State<DashBoard> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ProfilePage(),
+                            builder: (context) => ProfilePage(email: email,),
                           ));
                     },
                     child: Card(
@@ -170,45 +182,45 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatBotPage(),
-                          ));
-                    },
-                    child: Card(
-                      margin: EdgeInsets.fromLTRB(80, 30, 40, 0),
-                      color: Color(0xff5077be),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          children: <Widget>[
-                            // Image.asset(
-                            //   'assets/images/Chatbot.png',
-                            //   width: 100,
-                            //   height: 100,
-                            // ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Container(
-                              child: Text(
-                                'MedicalProfile',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //           builder: (context) =>ProfilePage(email: email,),
+                  //         ));
+                  //   },
+                  //   child: Card(
+                  //     margin: EdgeInsets.fromLTRB(80, 30, 40, 0),
+                  //     color: Color(0xff5077be),
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.all(12.0),
+                  //       child: Column(
+                  //         children: <Widget>[
+                  //           // Image.asset(
+                  //           //   'assets/images/Chatbot.png',
+                  //           //   width: 100,
+                  //           //   height: 100,
+                  //           // ),
+                  //           SizedBox(
+                  //             height: 30,
+                  //           ),
+                  //           Container(
+                  //             child: Text(
+                  //               'MedicalProfile',
+                  //               style: TextStyle(
+                  //                 fontFamily: 'Poppins',
+                  //                 fontWeight: FontWeight.bold,
+                  //                 fontSize: 15,
+                  //                 color: Colors.white,
+                  //               ),
+                  //             ),
+                  //           )
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             )

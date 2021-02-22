@@ -182,45 +182,6 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ),
                   ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //           builder: (context) =>ProfilePage(email: email,),
-                  //         ));
-                  //   },
-                  //   child: Card(
-                  //     margin: EdgeInsets.fromLTRB(80, 30, 40, 0),
-                  //     color: Color(0xff5077be),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(12.0),
-                  //       child: Column(
-                  //         children: <Widget>[
-                  //           // Image.asset(
-                  //           //   'assets/images/Chatbot.png',
-                  //           //   width: 100,
-                  //           //   height: 100,
-                  //           // ),
-                  //           SizedBox(
-                  //             height: 30,
-                  //           ),
-                  //           Container(
-                  //             child: Text(
-                  //               'MedicalProfile',
-                  //               style: TextStyle(
-                  //                 fontFamily: 'Poppins',
-                  //                 fontWeight: FontWeight.bold,
-                  //                 fontSize: 15,
-                  //                 color: Colors.white,
-                  //               ),
-                  //             ),
-                  //           )
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             )

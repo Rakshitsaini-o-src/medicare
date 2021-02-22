@@ -20,5 +20,21 @@ class DatabaseMethods{
         .doc('general')
         .set(userMap);
   }
+  getMedicalUserData(String email) async{
+    return await FirebaseFirestore.instance
+        .collection('Profile')
+        .doc(email)
+        .collection('Data')
+        .doc('medical')
+        .get();
+  }
+  uploadMedicalData(userMap,String email){
+    FirebaseFirestore.instance
+        .collection('Profile')
+        .doc(email)
+        .collection('Data')
+        .doc('medical')
+        .set(userMap);
+  }
 
 }

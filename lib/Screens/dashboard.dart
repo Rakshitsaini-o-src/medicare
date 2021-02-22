@@ -5,6 +5,7 @@ import 'package:medicare/helper/authenticate.dart';
 import 'package:medicare/helper/sharedpreference.dart';
 import 'package:medicare/reminder/reminder.dart';
 import 'package:medicare/services/auth.dart';
+import 'package:medicare/transfer/mainpage.dart';
 
 // ignore: must_be_immutable
 class DashBoard extends StatefulWidget {
@@ -169,6 +170,45 @@ class _DashBoardState extends State<DashBoard> {
                             Container(
                               child: Text(
                                 'Reminder',
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TransferPageMain(),
+                          ));
+                    },
+                    child: Card(
+                      margin: EdgeInsets.fromLTRB(80, 30, 40, 0),
+                      color: Color(0xff5077be),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset(
+                              'assets/images/Profile.png',
+                              width: 100,
+                              height: 100,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              child: Text(
+                                'Transfer',
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold,

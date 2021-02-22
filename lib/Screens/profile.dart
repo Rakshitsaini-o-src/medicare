@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:medicare/Screens/dashboard.dart';
 import 'package:medicare/services/database.dart';
 import 'package:medicare/widgets/widgets.dart';
 
@@ -15,12 +16,19 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final formKey = GlobalKey<FormState>();
   DatabaseMethods databaseMethods = new DatabaseMethods();
+  ///General Info Editor
   TextEditingController name = new TextEditingController();
   TextEditingController age = new TextEditingController();
   TextEditingController gender = new TextEditingController();
   TextEditingController phone = new TextEditingController();
   TextEditingController address = new TextEditingController();
-  DocumentSnapshot snapshotUserInfo;
+  ///Medical Info Editor
+  TextEditingController height = new TextEditingController();
+  TextEditingController weight = new TextEditingController();
+  TextEditingController blood = new TextEditingController();
+  TextEditingController preexist = new TextEditingController();
+  DocumentSnapshot snapshotUserDataInfo;
+  DocumentSnapshot snapshotMedicalDataInfo;
   bool isLoading = false;
 
   @override
@@ -29,12 +37,19 @@ class _ProfilePageState extends State<ProfilePage> {
     // TODO: implement initState
     super.initState();
     databaseMethods.getGeneralUserData(widget.email).then((value) {
-      snapshotUserInfo = value;
-      name.text = snapshotUserInfo.data()['name'];
-      age.text = snapshotUserInfo.data()['age'];
-      gender.text = snapshotUserInfo.data()['gender'];
-      phone.text = snapshotUserInfo.data()['phone'];
-      address.text = snapshotUserInfo.data()['address'];
+      snapshotUserDataInfo = value;
+      name.text = snapshotUserDataInfo.data()['name'];
+      age.text = snapshotUserDataInfo.data()['age'];
+      gender.text = snapshotUserDataInfo.data()['gender'];
+      phone.text = snapshotUserDataInfo.data()['phone'];
+      address.text = snapshotUserDataInfo.data()['address'];
+    });
+    databaseMethods.getMedicalUserData(widget.email).then((value){
+      snapshotMedicalDataInfo = value;
+      height.text = snapshotMedicalDataInfo.data()['height'];
+      weight.text = snapshotMedicalDataInfo.data()['weight'];
+      blood.text = snapshotMedicalDataInfo.data()['blood'];
+      preexist.text = snapshotMedicalDataInfo.data()['preexist'];
     });
   }
 
@@ -47,19 +62,24 @@ class _ProfilePageState extends State<ProfilePage> {
         seconds: 3,
       ),
         (){
-        setState(() {
-          isLoading = false;
-        });
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>DashBoard(email: widget.email)));
         }
     );
-    Map<String, String> userMap = {
+    Map<String, String> generalUserMap = {
       'name': name.text,
       'age': age.text,
       'gender': gender.text,
       'phone': phone.text,
       'address': address.text
     };
-    databaseMethods.uploadUserData(userMap, widget.email);
+    Map<String,String> medicalUserMap = {
+      'height': height.text,
+      'weight': weight.text,
+      'blood': blood.text,
+      'preexist': preexist.text
+    };
+    databaseMethods.uploadUserData(generalUserMap, widget.email);
+    databaseMethods.uploadMedicalData(medicalUserMap, widget.email);
   }
 
   @override
@@ -166,6 +186,66 @@ class _ProfilePageState extends State<ProfilePage> {
                       controller: address,
                       style: kTextfieldTextStyle(),
                       decoration: kTextfieldInputDecoration(address.text),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Center(
+                  child: Text(
+                    "Medical Profile",
+                    style: TextStyle(
+                        fontSize: 25,
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.double),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    'height',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  title: TextFormField(
+                    controller: height,
+                    style: kTextfieldTextStyle(),
+                    decoration: kTextfieldInputDecoration(height.text),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    'weight',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  title: TextFormField(
+                    controller: weight,
+                    style: kTextfieldTextStyle(),
+                    decoration: kTextfieldInputDecoration(weight.text),
+                  ),
+                ),
+                ListTile(
+                  leading: Text(
+                    'blood',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  title: TextFormField(
+                    controller: blood,
+                    style: kTextfieldTextStyle(),
+                    decoration: kTextfieldInputDecoration(blood.text),
+                  ),
+                ),
+                Column(
+                  children: [
+                    Text(
+                      'Pre-Existing Conditions',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    TextFormField(
+                      controller: preexist,
+                      style: kTextfieldTextStyle(),
+                      decoration: kTextfieldInputDecoration(preexist.text),
                     ),
                   ],
                 ),
